@@ -4,21 +4,13 @@
       <h3>Cryptocurrency Table</h3>
     </div>
     <div>
-      <b-dropdown size="sm" text="Select Rows Per Page" class="m-2">
-        <b-dropdown-item-button @click.native="$store.dispatch('setPerPage', 5)"
-          >5</b-dropdown-item-button
-        >
+      <label>Select rows per page:</label>
+      <b-dropdown size="sm" :text="$store.state.perPage" class="m-2">
         <b-dropdown-item-button
-          @click.native="$store.dispatch('setPerPage', 10)"
-          >10</b-dropdown-item-button
-        >
-        <b-dropdown-item-button
-          @click.native="$store.dispatch('setPerPage', 25)"
-          >25</b-dropdown-item-button
-        >
-        <b-dropdown-item-button
-          @click.native="$store.dispatch('setPerPage', 100)"
-          >100</b-dropdown-item-button
+          v-for="item in perPageOptions"
+          :key="item"
+          @click.native="$store.dispatch('setPerPage', item)"
+          >{{ item }}</b-dropdown-item-button
         >
       </b-dropdown>
     </div>
@@ -28,6 +20,11 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      perPageOptions: [5, 10, 25, 50, 100],
+    };
+  },
 };
 </script>
 

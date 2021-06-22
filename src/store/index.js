@@ -25,7 +25,7 @@ export default new Vuex.Store({
   actions: {
     loadCryptos({ commit }) {
       axios
-        .get("https://api.coinranking.com/v1/public/coins/?limit=20")
+        .get("https://api.coinranking.com/v1/public/coins/?limit=100")
         .then((response) => {
           commit("setCryptos", response.data.data.coins);
         })
