@@ -5,10 +5,18 @@
       :items="$store.getters.getFormattedList"
       :per-page="perPage"
       :current-page="currentPage"
+      :busy="$store.state.isBusy"
       striped
       hover
       small
-    ></b-table>
+    >
+      <template #table-busy>
+        <div class="text-center text-danger my-2">
+          <b-spinner class="align-middle"></b-spinner>
+          <strong>Loading...</strong>
+        </div>
+      </template></b-table
+    >
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"
