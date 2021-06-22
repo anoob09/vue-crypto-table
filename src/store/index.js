@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     isBusy: true,
     cryptos: [],
+    perPage: 10,
+    currentPage: 1,
   },
   mutations: {
     setCryptos(state, cryptos) {
@@ -15,6 +17,9 @@ export default new Vuex.Store({
     },
     setIsBusy(state, isBusy) {
       state.isBusy = isBusy;
+    },
+    setPerPage(state, perPage) {
+      state.perPage = perPage;
     },
   },
   actions: {
@@ -29,6 +34,9 @@ export default new Vuex.Store({
         })
         .finally(() => commit("setIsBusy", false));
     },
+    setPerPage({ commit }, perPage) {
+      commit("setPerPage", perPage);
+    },
   },
   getters: {
     getFormattedList(state) {
@@ -41,7 +49,9 @@ export default new Vuex.Store({
         cryptoField["price"] = `$ ${crypto["price"]}`;
         let change = crypto["change"];
         cryptoField["change"] = `${change} %`;
-        cryptoField["_cellVariants"] = { change: change < 0 ? "danger" : "" };
+        cryptoField["_cellVariants"] = {
+          change: change < 0 ? "danger" : change > 0 ? "success" : "",
+        };
         tempCryptoList.push(cryptoField);
       }
 
