@@ -36,6 +36,9 @@ export default new Vuex.Store({
         })
         .finally(() => commit("setIsBusy", false));
     },
+    setPerPage({ commit }, perPage) {
+      commit("setPerPage", perPage);
+    },
   },
   getters: {
     getFormattedList(state) {
