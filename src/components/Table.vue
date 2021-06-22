@@ -23,5 +23,24 @@
 <script>
 export default {
   name: "Table",
+  data() {
+    return {
+      updatingList: null,
+    };
+  },
+  methods: {
+    updateList() {
+      this.updatingList = setInterval(() => {
+        this.$store.dispatch("loadCryptos");
+      }, 20000);
+    },
+  },
+  created() {
+    this.$store.dispatch("loadCryptos");
+    this.updateList();
+  },
+  beforeDestroy() {
+    clearInterval(this.updateList);
+  },
 };
 </script>

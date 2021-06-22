@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import { apiRoutes } from "../utils/api-routes";
 
 Vue.use(Vuex);
 
@@ -24,8 +25,9 @@ export default new Vuex.Store({
   },
   actions: {
     loadCryptos({ commit }) {
+      commit("setIsBusy", true);
       axios
-        .get("https://api.coinranking.com/v1/public/coins/?limit=100")
+        .get(apiRoutes.limit100)
         .then((response) => {
           commit("setCryptos", response.data.data.coins);
         })
@@ -33,9 +35,6 @@ export default new Vuex.Store({
           console.log(e);
         })
         .finally(() => commit("setIsBusy", false));
-    },
-    setPerPage({ commit }, perPage) {
-      commit("setPerPage", perPage);
     },
   },
   getters: {

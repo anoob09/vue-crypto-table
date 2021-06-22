@@ -13,9 +13,6 @@ import Pagination from "./Pagination.vue";
 
 export default {
   name: "CryptoTable",
-  created() {
-    this.$store.dispatch("loadCryptos");
-  },
   data() {
     return {
       items: [],
