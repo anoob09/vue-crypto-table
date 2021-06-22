@@ -2,10 +2,11 @@
   <div class="overflow-auto">
     <b-table
       id="my-table"
-      :items="items"
+      :items="$store.getters.getFormattedList"
       :per-page="perPage"
       :current-page="currentPage"
-      :fields="fields"
+      striped
+      hover
       small
     ></b-table>
     <b-pagination
@@ -19,7 +20,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CryptoTable",
   data() {
@@ -27,22 +27,14 @@ export default {
       items: [],
       perPage: 10,
       currentPage: 1,
-      fields: ["iconUrl", "name", "symbol", "price", "change"],
     };
   },
   created() {
-    axios
-      .get("https://api.coinranking.com/v1/public/coins/?limit=20")
-      .then((response) => {
-        this.items = response.data.data.coins;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    this.$store.dispatch("loadCryptos");
   },
   computed: {
     rows() {
-      return this.items.length;
+      return this.$store.state.cryptos.length;
     },
   },
 };
