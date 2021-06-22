@@ -6,6 +6,7 @@
       :per-page="$store.state.perPage"
       :current-page="$store.state.currentPage"
       :busy="$store.state.isBusy"
+      :fields="fields"
       striped
       hover
       small
@@ -25,6 +26,25 @@ export default {
   name: "Table",
   data() {
     return {
+      fields: [
+        {
+          key: "name",
+          sortable: true,
+        },
+        {
+          key: "symbol",
+          sortable: true,
+        },
+        {
+          key: "price",
+          sortable: true,
+          // Variant applies to the whole column, including the header and footer
+        },
+        {
+          key: "change",
+          sortable: true,
+        },
+      ],
       updatingList: null,
     };
   },
