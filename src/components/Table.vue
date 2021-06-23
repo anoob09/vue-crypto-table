@@ -15,7 +15,7 @@
       hover
       small
     >
-      <template #cell(url)="data">
+      <template #cell(Icon)="data">
         <img :src="data.item.url" width="20px" height="20px" />
       </template>
 
@@ -35,11 +35,10 @@ export default {
   data() {
     return {
       fields: [
-        "url",
+        "Icon",
         {
           key: "name",
           sortable: true,
-          thStyle: { width: "250px !important" },
         },
         {
           key: "symbol",
