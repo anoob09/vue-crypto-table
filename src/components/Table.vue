@@ -1,5 +1,9 @@
 <template>
   <div>
+    <svg-icon
+      data-v-783f90ce=""
+      xlmns="https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg"
+    ></svg-icon>
     <b-table
       id="my-table"
       :items="$store.getters.getFormattedList"
@@ -11,6 +15,10 @@
       hover
       small
     >
+      <template #cell(url)="data">
+        <img :src="data.item.url" width="20px" height="20px" />
+      </template>
+
       <template #table-busy>
         <div class="text-center text-danger my-2">
           <b-spinner class="align-middle"></b-spinner>
@@ -27,9 +35,11 @@ export default {
   data() {
     return {
       fields: [
+        "url",
         {
           key: "name",
           sortable: true,
+          thStyle: { width: "250px !important" },
         },
         {
           key: "symbol",
@@ -38,7 +48,6 @@ export default {
         {
           key: "price",
           sortable: true,
-          // Variant applies to the whole column, including the header and footer
         },
         {
           key: "change",
@@ -52,7 +61,7 @@ export default {
     updateList() {
       this.updatingList = setInterval(() => {
         this.$store.dispatch("loadCryptos");
-      }, 20000);
+      }, 1000000);
     },
   },
   created() {
@@ -64,3 +73,9 @@ export default {
   },
 };
 </script>
+
+<style lang="css" scoped>
+.my-class {
+  width: 100px;
+}
+</style>

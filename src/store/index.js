@@ -46,6 +46,7 @@ export default new Vuex.Store({
 
       for (let crypto of state.cryptos) {
         let cryptoField = {};
+        cryptoField["url"] = crypto["iconUrl"];
         cryptoField["name"] = crypto["name"];
         cryptoField["symbol"] = crypto["symbol"];
         cryptoField["price"] = `$ ${crypto["price"]}`;
