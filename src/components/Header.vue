@@ -32,7 +32,12 @@ export default {
 #header {
   display: flex;
   margin: 10px 20px 10px 20px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+}
+@media screen and (min-width: 768px) {
+  #header {
+    flex-direction: row;
+  }
 }
 </style>
