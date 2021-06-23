@@ -49,7 +49,9 @@ export default new Vuex.Store({
         cryptoField["url"] = crypto["iconUrl"];
         cryptoField["name"] = crypto["name"];
         cryptoField["symbol"] = crypto["symbol"];
-        cryptoField["price"] = `$ ${crypto["price"]}`;
+        cryptoField["price"] = `$ ${(
+          Math.round(crypto["price"] * 100) / 100
+        ).toFixed(2)}`;
         let change = crypto["change"];
         cryptoField["change"] = `${change} %`;
         cryptoField["_cellVariants"] = {
